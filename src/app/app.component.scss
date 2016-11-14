@@ -1,0 +1,12 @@
+main {
+    md-toolbar {
+        a.title {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .router-outlet-container {
+        padding: 20px;
+    }
+}

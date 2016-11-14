@@ -1,0 +1,25 @@
+@import '../variables';
+
+@mixin on-small() {
+    @media (max-width: $break-small) {
+        @content;
+    }
+}
+
+@mixin on-mobile() {
+    @media (min-width: ($break-small + 1)) and (max-width: $break-mobile) {
+        @content;
+    }
+}
+
+@mixin on-desktop() {
+    @media (min-width: ($break-mobile + 1)) and (max-width: $break-large) {
+        @content;
+    }
+}
+
+@mixin on-large() {
+    @media (min-width: ($break-large + 1)) {
+        @content;
+    }
+}

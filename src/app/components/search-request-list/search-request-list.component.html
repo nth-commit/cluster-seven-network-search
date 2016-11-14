@@ -1,0 +1,21 @@
+<div class="search-request-list-component">
+    <md-list>
+        <md-list-item *ngFor="let searchRequest of searchRequests">
+            <div class="search-request" (click)="selectSearchRequest(searchRequest)">
+                <div md-line class="title">
+                    <strong class="main-title">{{ searchRequest.name }}</strong>
+                    <span class="sub-title">{{ searchRequest.description }}</span>
+                </div>
+                <div md-line class="description">
+                    <span>Requested by</span>
+                    <span>{{ getRequesterDomain(searchRequest) }}</span><strong>{{ getRequesterName(searchRequest) }}</strong>
+                </div>
+                <div md-line class="audit">
+                    <span>{{ searchRequest.requestedAt | date:'short' }}</span>
+                    <span>-</span>
+                    <span>{{ searchRequest.finishedAt  | date:'shortTime' }}</span>
+                </div>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>

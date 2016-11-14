@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.search-request-list-component {
+    .search-request {
+        @include clickable();
+        width: 100%;
+        padding: 10px;
+
+        .title {
+            .sub-title {
+                font-size: 0.75em;
+                color: $mutedGreyColor;
+            }
+        }
+
+        .description {
+            font-size: 0.85em;
+        }
+
+        .audit {
+            font-size: 0.75em;
+            color: $mutedGreyColor;
+            text-transform: uppercase;
+        }
+    }
+}

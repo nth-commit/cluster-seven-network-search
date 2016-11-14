@@ -1,0 +1,29 @@
+<div class="file-component">
+    <md-card title="{{ file.path }}">
+        <md-card-title>
+            <div class="file-name">{{ getFileName() }}</div>
+        </md-card-title>
+        <md-card-subtitle>
+            <div class="directory">{{ getNetworkDirectory() }}</div>
+        </md-card-subtitle>
+        <md-card-content>
+            <table class="file-history">
+                <tbody>
+                    <tr>
+                        <td>Created</td>
+                        <td>{{ file.created | date }}</td>
+                    </tr>
+                    <tr>
+                        <td>LastAccessed</td>
+                        <td>{{ file.lastAccessed | date }}</td>
+                    </tr>
+                    <tr>
+                        <td>LastModified</td>
+                        <td>{{ file.lastModified | date }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="size">{{ file.size | byte }}</div>
+        </md-card-content>
+    </md-card>
+</div>

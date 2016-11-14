@@ -1,0 +1,7 @@
+<div class="home-component">
+    <h3>Scans</h3>
+    <p>Select a scan to list its files!</p>
+    <search-request-list
+        [searchRequests]="searchRequestService.searchRequests$ | async"
+        (searchRequestSelected)="navigateToSearchRequest($event)"></search-request-list>
+</div>

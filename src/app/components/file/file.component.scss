@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.file-component {
+    padding: 10px;
+
+    .directory {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    table.file-history {
+        width: 100%;
+        font-size: 0.75em;
+        color: $mutedGreyColor;
+        text-transform: uppercase;
+        td {
+            width: 50%;
+        }
+    }
+
+    .size {
+        margin-top: 5px;
+        text-align: right;
+        font-weight: 500;
+    }
+}

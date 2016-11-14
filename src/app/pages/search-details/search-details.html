@@ -1,0 +1,7 @@
+<div class="search-details-component">
+    <h3>Search Request Name: {{ (searchRequest$ | async)?.name }}</h3>
+    <file-list
+        [files]="files$ | async"
+        [serverCount]="(searchRequest$ | async)?.count"
+        (nextPageRequested)="loadNextPage()"></file-list>
+</div>
