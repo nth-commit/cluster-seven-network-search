@@ -1,0 +1,29 @@
+<div class="file-filters-component">
+    <form [formGroup]="form">
+        <div class="filter-container">
+            <div class="text-filter">
+                <md-input formControlName="pattern" placeholder="Search phrase"></md-input>
+            </div>
+        </div>
+
+        <div class="filter-container">
+            <div class="size-filter">
+                <md-radio-group formControlName="sizeDescriptorType">
+                    <md-radio-button *ngFor="let type of FileSizeDescriptorType | enumValues" [value]="type">
+                        {{ type | fileSizeDescriptorType }}
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+
+        <div class="filter-container">
+            <div class="date-filter">
+                <md-radio-group formControlName="dateDescriptorType">
+                    <md-radio-button *ngFor="let type of FileDateDescriptorType | enumValues" [value]="type">
+                        {{ type | fileDateDescriptorType }}
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+    </form>
+</div>

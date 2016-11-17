@@ -1,7 +1,13 @@
 <div class="search-details-component">
     <h3>Search Request Name: {{ (searchRequest$ | async)?.name }}</h3>
+
+    <file-filters
+        [filters]="filters$ | async"
+        (filtersUpdated)="store.dispatch($event)"></file-filters>
+
     <file-list
         [files]="files$ | async"
-        [serverCount]="(searchRequest$ | async)?.count"
+        [filteredFiles]="filteredFiles$ | async"
+        [searchRequest]="searchRequest$ | async"
         (nextPageRequested)="loadNextPage()"></file-list>
 </div>

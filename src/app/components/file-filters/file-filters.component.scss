@@ -1,0 +1,34 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.file-filters-component {
+    
+    .filter-container {
+        @include make-row(0);
+        padding: 15px;
+
+        .text-filter {
+            @include make-sm-column(6, 0);
+
+            md-input {
+                width: 100%;
+            }
+        }
+
+        .size-filter {
+            @include make-sm-column(12, 0);
+
+            md-radio-button {
+                margin-right: 20px;
+            }
+        }
+
+        .date-filter {
+            @include make-sm-column(12, 0);
+
+            md-radio-button {
+                margin-right: 20px;
+            }
+        }
+    }
+}

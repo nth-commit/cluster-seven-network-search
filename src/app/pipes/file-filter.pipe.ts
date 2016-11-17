@@ -18,7 +18,7 @@ export interface FileFilterArgs {
     datePropertyName: string;
 };
 
-const DEFAULT_FILE_FILTER_ARGS: FileFilterArgs = {
+export const DEFAULT_FILE_FILTER_ARGS: FileFilterArgs = {
     pattern: '',
 
     sizeDescriptorType: FileSizeDescriptorType.All,

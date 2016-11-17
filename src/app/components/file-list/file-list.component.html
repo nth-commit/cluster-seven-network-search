@@ -1,52 +1,25 @@
 <div class="file-list-component">
-    <div class="filter-container">
-        <div class="text-filter">
-            <md-input [(ngModel)]="pattern" placeholder="Search phrase">
-            </md-input>
-        </div>
-    </div>
-
-    <div class="filter-container">
-        <div class="size-filter">
-            <md-radio-group [(ngModel)]="sizeDescriptorType">
-                <md-radio-button *ngFor="let type of FileSizeDescriptorType | enumValues" [value]="type">
-                    {{ type | fileSizeDescriptorType }}
-                </md-radio-button>
-            </md-radio-group>
-        </div>
-    </div>
-
-    <div class="filter-container">
-        <div class="date-filter">
-            <md-radio-group [(ngModel)]="dateDescriptorType">
-                <md-radio-button *ngFor="let type of FileDateDescriptorType | enumValues" [value]="type">
-                    {{ type | fileDateDescriptorType }}
-                </md-radio-button>
-            </md-radio-group>
-        </div>
-    </div>
-
     <div class="file-results">
-        <div *ngIf="getVisibleCount() === 0">
+        <div *ngIf="filteredFiles.length === 0">
             <div class="no-results">
                 <h2>No Results! :(</h2>
             </div>
             <div class="results-summary">
                 <span>{{ files.length }} filtered.</span>
-                <span *ngIf="hasMoreResults()">Click below to expand your search further!</span>
+                <span *ngIf="searchRequest.count > files.length">Click below to expand your search further!</span>
             </div>
         </div>
-        <div *ngIf="getVisibleCount() > 0">
+        <div *ngIf="filteredFiles.length > 0">
             <div class="results-summary">
-                <span>Showing {{ getVisibleCount() }} of {{ serverCount }} ({{ getFilteredCount() }} filtered)</span>
+                <span>Showing {{ filteredFiles.length }} of {{ searchRequest.count }} ({{ files.length - filteredFiles.length }} filtered)</span>
             </div>
-            <div class="file" *ngFor="let file of files | fileFilter:getFilterArgs()">
+            <div class="file" *ngFor="let file of filteredFiles">
                 <file [file]="file"></file>
             </div>
         </div>
     </div>
 
-    <div class="more-results-container" *ngIf="hasMoreResults()">
+    <div class="more-results-container" *ngIf="searchRequest.count > files.length">
         <a href="javascript:;" class="more-results" (click)="requestNextPage()">Load more</a>
     <div>
 </div>

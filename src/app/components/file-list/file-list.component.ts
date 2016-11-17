@@ -1,9 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core'
 
-import { FileSizeDescriptorType, FileDateDescriptorType } from '../../app.constants';
-import { FileFilterPipe } from '../../pipes/file-filter.pipe';
 import { File } from '../../services/models/file.model';
-import { FileFilterArgs } from '../../pipes/file-filter.pipe';
+import { SearchRequest } from '../../services/models/search-request.model'
 
 @Component({
     selector: 'file-list',
@@ -13,44 +11,21 @@ import { FileFilterArgs } from '../../pipes/file-filter.pipe';
 })
 export class FileListComponent {
     @Input() files: File[] = [];
-    @Input() serverCount: number = Number.MAX_VALUE;
+    @Input() filteredFiles: File[] = [];
+    @Input() searchRequest: SearchRequest;
+    @Input() loadedCount: number;
     @Output() nextPageRequested = new EventEmitter();
 
-    FileSizeDescriptorType: any;
-    FileDateDescriptorType: any;
-
-    pattern: string;
-    sizeDescriptorType: FileSizeDescriptorType = FileSizeDescriptorType.All;
-    dateDescriptorType: FileDateDescriptorType = FileDateDescriptorType.All;
-    datePropertyName: string;
-
-    constructor(
-        private fileFilterPipe: FileFilterPipe
-    )
-    {
-        this.FileSizeDescriptorType = FileSizeDescriptorType;
-        this.FileDateDescriptorType = FileDateDescriptorType;
-    }
-
-    getFilterArgs(): FileFilterArgs {
-        return {
-            pattern: this.pattern,
-            sizeDescriptorType: this.sizeDescriptorType,
-            dateDescriptorType: this.dateDescriptorType,
-            datePropertyName: this.datePropertyName
-        };
-    }
-
     getVisibleCount(): number {
-        return this.fileFilterPipe.transform(this.files, this.getFilterArgs()).length;
+        return this.filteredFiles.length;
     }
 
     getFilteredCount(): number {
-        return this.files.length - this.getVisibleCount();
+        return this.files.length - this.filteredFiles.length;
     }
 
     hasMoreResults(): boolean {
-        return this.serverCount > this.files.length;
+        return this.searchRequest.count > this.files.length;
     }
 
     requestNextPage() {
